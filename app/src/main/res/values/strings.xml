@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MP012PP1</string>
+    <string name="texto_buscar">Buscar</string>
+    <string name="texto_eliminar">Eliminar</string>
+</resources>
