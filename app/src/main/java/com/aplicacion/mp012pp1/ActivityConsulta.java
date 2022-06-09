@@ -37,30 +37,41 @@ public class ActivityConsulta extends AppCompatActivity {
     }
 
     private void BuscarEmpleado(){
-        SQLiteDatabase db = conexion.getWritableDatabase();
+        try{
+            SQLiteDatabase db = conexion.getWritableDatabase();
 
-        //PARAMETROS DE BUSQUEDA
-        String [] params = {id.getText().toString()};
+            //PARAMETROS DE BUSQUEDA
+            String [] params = {id.getText().toString()};
 
-        //CAMPOS A RETORNAR
-        String [] fields = {Transacciones.nombres,
-                            Transacciones.apellidos,
-                            Transacciones.edad,
-                            Transacciones.correo};
+            //CAMPOS A RETORNAR
+            String [] fields = {Transacciones.nombres,
+                    Transacciones.apellidos,
+                    Transacciones.edad,
+                    Transacciones.correo};
 
-        String WhereCondition = Transacciones.id + "=?";
+            String WhereCondition = Transacciones.id + "=?";
 
-        Cursor cdata = db.query(Transacciones.tablaEmpleados, fields,
-                WhereCondition, params, null, null, null);
+            Cursor cdata = db.query(Transacciones.tablaEmpleados, fields,
+                    WhereCondition, params, null, null, null);
 
-        cdata.moveToFirst();
+            cdata.moveToFirst();
 
-        nombres.setText(cdata.getString(0));
-        apellidos.setText(cdata.getString(1));
-        edad.setText(cdata.getString(2));
-        correo.setText(cdata.getString(3));
+            if (cdata.getCount()>0){
 
-        Toast.makeText(getApplicationContext(),"Consulta realizada exitosamente",Toast.LENGTH_LONG).show();
+                nombres.setText(cdata.getString(0));
+                apellidos.setText(cdata.getString(1));
+                edad.setText(cdata.getString(2));
+                correo.setText(cdata.getString(3));
+
+                Toast.makeText(getApplicationContext(),"Consulta realizada exitosamente",Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(getApplicationContext(),"No se encontraron Datos",Toast.LENGTH_LONG).show();
+            }
+        }
+        catch (Exception ex){
+            Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
+        }
+
     }
 
     private void Eliminar()
