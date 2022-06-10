@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     EditText txtnombre, txtapellidos;
-    Button btnmostrar, btnsecond, btnCrear, btnConsultar;
+    Button btnmostrar, btnsecond, btnCrear, btnConsultar, btnLista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         btnsecond = (Button) findViewById(R.id.btnsecond);
         btnCrear = (Button) findViewById(R.id.btnCrear);
         btnConsultar = (Button) findViewById(R.id.btnConsultar);
+        btnLista = (Button) findViewById(R.id.btnLista);
 
         btnmostrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),ActivityConsulta.class);
+                startActivity(intent);
+
+            }
+        });
+
+        btnLista.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ActivityList.class);
                 startActivity(intent);
 
             }
