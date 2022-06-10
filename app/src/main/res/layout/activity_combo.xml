@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityCombo"
+    android:orientation="vertical"
+    android:background="@drawable/fondo">
+
+    <Spinner
+        android:id="@+id/comboPersona"
+        android:layout_width="match_parent"
+        android:layout_height="149dp"
+        android:textSize="22dp"/>
+
+    <EditText
+        android:id="@+id/txtConNombres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nombres"
+        android:textSize="22dp"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/txtConApellidos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Apellidos"
+        android:textSize="22dp" />
+
+    <EditText
+        android:id="@+id/txtConEdad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Edad"
+        android:textSize="22dp" />
+
+    <EditText
+        android:id="@+id/txtConEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Email"
+        android:textSize="22dp" />
+
+</LinearLayout>
