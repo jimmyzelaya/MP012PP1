@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     EditText txtnombre, txtapellidos;
-    Button btnmostrar, btnsecond, btnCrear, btnConsultar, btnLista, btnCombo;
+    Button btnmostrar, btnsecond, btnCrear, btnConsultar, btnLista, btnCombo, btnFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         btnConsultar = (Button) findViewById(R.id.btnConsultar);
         btnLista = (Button) findViewById(R.id.btnLista);
         btnCombo = (Button) findViewById(R.id.btnCombo);
+        btnFoto = (Button) findViewById(R.id.btnFoto);
 
         btnmostrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +78,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),ActivityCombo.class);
+                startActivity(intent);
+
+            }
+        });
+
+        btnFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ActivityPhoto.class);
                 startActivity(intent);
 
             }

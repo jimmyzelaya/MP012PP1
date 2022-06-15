@@ -10,6 +10,8 @@ import androidx.core.content.PackageManagerCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.service.media.MediaBrowserService;
@@ -22,10 +24,10 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class ActivityPhoto extends AppCompatActivity {
 
-    static  final  int REQUESTCODECAMARA =100;
-    static  final  int REQUESTTAKEPHOTO =101;
-    ImageView ObjetoImage;
-    Button btnFoto;
+    static  final int REQUESTCODECAMARA = 100;
+    static  final int REQUESTTAKEPHOTO = 101;
+    ImageView ObjectImage;
+    Button btnfoto;
     String PathFoto;
 
     @Override
@@ -33,12 +35,13 @@ public class ActivityPhoto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
 
-        ObjetoImage = (ImageView) findViewById(R.id.Fotografia);
-        btnFoto = (Button) findViewById(R.id.btnFoto);
+        ObjectImage = (ImageView) findViewById(R.id.Fotografia);
+        btnfoto = (Button) findViewById(R.id.btnfoto);
 
-        btnFoto.setOnClickListener(new View.OnClickListener() {
+        btnfoto.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view)
+            {
                 OtorgarPermisos();
             }
         });
@@ -46,7 +49,7 @@ public class ActivityPhoto extends AppCompatActivity {
 
     private void OtorgarPermisos()
     {
-        if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)!=
+        if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) !=
                 PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(this,
@@ -55,28 +58,28 @@ public class ActivityPhoto extends AppCompatActivity {
         else
         {
             TomarFotografia();
-
         }
     }
 
-    private void TomarFotografia() {
-        Intent tomarFoto=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(tomarFoto,REQUESTTAKEPHOTO);
+    private void TomarFotografia()
+    {
+        Intent tomarfoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(tomarfoto,REQUESTTAKEPHOTO);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if(requestCode == REQUESTCODECAMARA){
-
-            if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+        if(requestCode == REQUESTCODECAMARA)
+        {
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
             {
                 TomarFotografia();
             }
             else
             {
-                Toast.makeText(getApplicationContext(),"PERMISO DENEGADO", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Permiso denegado", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -84,5 +87,12 @@ public class ActivityPhoto extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==REQUESTTAKEPHOTO && resultCode == RESULT_OK)
+        {
+            Bundle extraerfoto=data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extraerfoto.get("data");
+            ObjectImage.setImageBitmap(imageBitmap);
+        }
     }
 }

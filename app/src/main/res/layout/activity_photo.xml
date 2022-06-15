@@ -4,21 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityPhoto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ActivityPhoto">
 
 
     <ImageView
         android:id="@+id/Fotografia"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="341dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
-        android:id="@+id/btnFoto"
+        android:id="@+id/btnfoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TOMAR FOTO" />
+        android:text="Tomar Foto" />
 </LinearLayout>
